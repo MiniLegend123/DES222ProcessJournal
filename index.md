@@ -5,4 +5,4 @@
 
 Here is the first entry of my journal.
 
-![Dinosaurs Squandered What They Had] (./images/end-of-the-world-meteor)
+![Dinosaurs Squandered What They Had] (./images/end-of-the-world-meteor.jpg)
