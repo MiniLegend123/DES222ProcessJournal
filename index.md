@@ -91,10 +91,10 @@ A device for the user to keep track of their pet's health and wellbeing. Using d
 <br>
 
 ### Technology Required
-Microbit - microcontroller used to collect data and power devices
-Pulse Sensor - reads the animals heartbeat
-Accelerometer - reads number of steps taken or speed of movement
-Thermometer - reads the external temperature surrounding the pet.
+Microbit V2 - microcontroller used to collect data and power devices. <br>
+Pulse Sensor - reads the animals heartbeat. <br>
+Accelerometer - reads number of steps taken or speed of movement. <br>
+Thermometer - reads the external temperature surrounding the pet. <br>
 
 <br>
 
@@ -107,9 +107,27 @@ I started with the temperature sensor, trying to detect the external temperature
 
 <br>
 
-To 
+To create a step counter for the pets I first tested the on shake function to increment steps when the microbit was shaken. However I quickly discovered that the built in shake function was not sensetive enough to register steps from a smaller animal, and could not be adjusted. Following online information I found that an alternative to this is to check for changes in the microbits accelerometer strength value. I first implemented this method by checking if the acceleration strengh was greater than a defined value, and then increasing the steps variable by 1. To take this further I also created a walk distance variable to calculate the distance walked by the pet, based off of the average step distance and then multipolying it by the number of steps taken. THis will only be an estimation but is still a useful feature to have on the product. <br>
+Unfortuunately this method to gather the number of steps taken proved to be ineffective as this function was simply called in the forever method, resulting in many steps being registered as long as the accelleration value was exceeding the devined strength value. <br>
+I also utilised button A and B on the device as a function to check the number of steps taken, as well as resetting the step counter and walk distance. The benefit of the pet state function allowed me to return to the oet state image after 2 seconds. <br>
 
 ![Make Code Step Counter](images/MC2.PNG)
+
+<br>
+
+To fix the step counter I performed some various tests and eventually found the best option was to refine the strength value and also create a variable to check if a step had been recently registered to limit the number of multiple steps being registered in a single step, that wouold be set to true once a step was taken. after .2 seconds the varible would be reverted to false to allow the next step to be registered. This efectively allows the apex of the accelerometer strength value to be limited to a timeframe and strength that may be adjusted through testing to find the perfect values. This is a rudimentary method to achieve this with certain inacuracies that may arrise but seems to be the best option for the use case. <br>
+I also added a clear screen function when button A or B was pressed for a cleaner outcome when showing step values on the LED display. <br>
+
+![Make Code Step Counter](images/MC3.PNG)
+
+<br>
+
+As the set temp function did not need to be checked every tick of the microbit, I moved it to its own timed loop that could check the temperature every 5 seconds for the time being. This will most likely be changed to every minute or 5 minutes as the temperature will generally not change that often resulting in unnecessary calls. <br>
+Also as the microbit is a V2 it has a logo button that may be pressed, so I utilised its functionality to show the current temperature in degrees celcius when pressed, before returning to the current pet state. <br>
+
+![Make Code Step Counter](images/MC4.PNG)
+
+<br>
 
 ## References
 MeasureON! Dog Heart Rate Monitor - https://vetmeasure.com/continuous-heart-rate-monitor/ <br>
