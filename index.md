@@ -14,8 +14,6 @@ Here is the first entry of my journal.
 Today we spoke about my project idea and spoke about some of its possible benefits and disadvantages that may arise. Some disadvantages were that it may be difficult to find a sensor that could track the animal's heartbeat or temperature from the neck area. A point made by one of my classmates was that the ear can be quite a good option for this that is readily used in the medical industry and used to measure oxygen levels. Instead of detecting the animal's temperature it could instead detect the environment temperature the animal is within using the microbits thermostat. <br>
 The benefits of this could be to know how active the pet my be with the addition of a pedometer or gyro sensor. Having an lcd on the microbit it can also show a status of the pet on its collar as well as on the website in the form of a dynamic face. <br>
 
-Apparently, you can get a free heartrate sensor from Queensland health.
-
 I purchased a pulse sensor from Ebay that will arrive within the week for use in my project. I also began testing features using the microbit controller. I used the built in temperature sensor to set the temperature variable and then checked if the temperature was within 3 different ranges, setting the pets overall temperature condition depending on which range it was within such as cold, fine, or hot. I also setup a calibratable step counter that checks for changes in the microbits accelerometer that will count steps and calculate walk distance based on the set average step distance.
 
 <br>
@@ -46,6 +44,12 @@ Configuration - Nonhuman <br>
 Input - Manual Controls <br>
 Output - Informational <br>
 This could be an informative biometrics reader for cats and dogs, to inform the owner of the animal's health such as vitals, temperature, and fatigue. It could be made from a microbit with a heart rate monitor and reading the animals temperature, a Wi-Fi chip or bluetooth could be used to send the information to a web application. This device could be made in a small form factor to be used as a collar attachment, provided these biometrics can be read from the neck area and cause minimal discomfort.
+
+<br>
+
+### Idea Feedback
+We spoke about my project idea and spoke about some of its possible benefits and disadvantages that may arise. Some disadvantages were that it may be difficult to find a sensor that could track the animal's heartbeat or temperature from the neck area. A point made by one of my classmates was that the ear can be quite a good option for this that is readily used in the medical industry and used to measure oxygen levels. Instead of detecting the animal's temperature it could instead detect the environment temperature the animal is within using the microbits thermostat. <br>
+The benefits of this could be to know how active the pet my be with the addition of a pedometer or gyro sensor. Having an lcd on the microbit it can also show a status of the pet on its collar as well as on the website in the form of a dynamic face. 
 
 <br>
 
@@ -125,7 +129,22 @@ I also added a clear screen function when button A or B was pressed for a cleane
 As the set temp function did not need to be checked every tick of the microbit, I moved it to its own timed loop that could check the temperature every 5 seconds for the time being. This will most likely be changed to every minute or 5 minutes as the temperature will generally not change that often resulting in unnecessary calls. <br>
 Also as the microbit is a V2 it has a logo button that may be pressed, so I utilised its functionality to show the current temperature in degrees celcius when pressed, before returning to the current pet state. <br>
 
-![Make Code Step Counter](images/MC4.PNG)
+![Button Shows Temp](images/MC4.PNG)
+
+<br>
+
+### Adding A Pulse Sensor
+On make code I setup a simple function to read the inputs from the pulse sensor. I began by creating 2 variable caller heartRate and heartRateSmoothed. I will be using the microbit pin 0 to read the values recieved from the pulse sensor so I set the heartRate variable to the pin 0 using analog read pin, which then was made visible using serial write value. To get a smoothed result I then used a calculation for smoothing the values of the heartRate variable that is shown below. This requireed a variable I called ratio that could be changed to increase or decrease the smoothing that I currently set to '.05'. heartRateSmoothed was also made visible using serial read value. <br>
+
+![Button Shows Temp](images/MC5.PNG) <br>
+
+After connecting the pule sensor device to the micro bit using its 3 volt, earth, and 0 pins, I was able to recieve data and check the sensors effectiveness. Below you can see the sensor reading my heart rate with the raw data on the bottom and the smoothed data on top. <br>
+
+![My Heart Rate](images/MC6.PNG) <br>
+
+Now that I have confirmed the code and sensor is working I began tests with the sensor on my cat. Right away I was having trouble reading the pets heartrate as pointed out by my tutor because the pulse sensor requires skin contact for effective results. Luckily my cat has very short hair and areas with visible skin so after testing different areas such as the neck, chest, and skin, I found an area on the neck that gave results. Unfortunately these results still are not great, and in most scenarios using this sensor on other pets with more fur the user would have trouble getting effective results. This createsa problem for my devices main use case and I will have to think about weather I should try other sensor types or even reevaluate what my device could be used for, or even change it entirely. <br>
+
+![Cats Heart Rate](images/MC7.PNG)
 
 <br>
 
