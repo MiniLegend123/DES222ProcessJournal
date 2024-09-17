@@ -18,6 +18,23 @@ I purchased a pulse sensor from Ebay that will arrive within the week for use in
 
 <br>
 
+This week we spoke about how my device can benefit the user, have its own unice aspects, and have a strong foundation. We also speculated how our projects could evolve or adapt, and conceptualised other potential options.
+
+How can my project have a strong conceptual foundation? <br>
+My device will be shaped around meeting the needs of pet home owners who want more information about their pet, in a fun new way. The pet health industry already has alot of research, and it will be tested on animals. <br>
+
+How will my project benefit the user, why would they want to use it? <br>
+It will benefit the user by giving them a simple effective means to check their pets overall health and activity. <br>
+
+What is it similar to? <br>
+This device shares similarities to other pet health trackers shown below, especially the PetPace dog collar. Similarly it will share similarities to a fitbit. <br>
+
+How is it unique <br>
+My device is unique because it gives the user fun images of cats alongside the information about their pet health.
+
+
+<br>
+
 ## Choosing A Project
 In this section, using the provided generator I used the generated options both individually and, in a group, to come up with possible project ideas relating to responsive design.
 
@@ -90,7 +107,8 @@ The infrared monitor is a less invasive method for home users to check their pet
 # Animal Health Tracker
 ## Overview
 Wearable Technology senses biometric data of pets.
-A device for the user to keep track of their pet's health and wellbeing. Using different biometric sensors, it may collect input data such as heart rate, temperature, and number of steps or speed of movement and walk distance, and return output data of the overall health and happiness of the pet along with all information used to determine the results. 
+A device for the user to keep track of their pet's health and wellbeing. Using different biometric sensors, it may collect input data such as heart rate, temperature, and number of steps or speed of movement and walk distance, and return output data of the overall health and happiness of the pet along with all information used to determine the results. <br>
+The data will be readable from a web page that will show details about each aspect of the pet and rate its overall happiness. It will also show little quirky images of each aspect that sums up the pets active levels, temperature, and happyness. May get images from API's or in built images.
 
 <br>
 
