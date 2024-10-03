@@ -1,24 +1,20 @@
 
-# Journal Entries
+## Journal Entries
 
-## Entry 1
+### Entry 1
+Today we brainstormed potential projects to work on, we did this by initially grouping up and concepting ideas based off of generated factors such as wheter the devise used mechanical inouts or biometrics, or if it is a product for a human or not. W came up with a couple ideas detailed in the choosing a project section. After that I used the generator to help me with a baseline for my project. I decided to make a custom device for non-humans, that uses biometric inputs in an informative way. After some thought on this I had defined my product to be a pet health tracker, that would take biometric data of the users pet and give that information on a webpage.  <br>
 
-Here is the first entry of my journal.
-
-![Dinosaurs Squandered What They Had](images/end-of-the-world-meteor.jpg)
-
-<br>
-
-## Second Entry
-
+### Entry 2
 Today we spoke about my project idea and spoke about some of its possible benefits and disadvantages that may arise. Some disadvantages were that it may be difficult to find a sensor that could track the animal's heartbeat or temperature from the neck area. A point made by one of my classmates was that the ear can be quite a good option for this that is readily used in the medical industry and used to measure oxygen levels. Instead of detecting the animal's temperature it could instead detect the environment temperature the animal is within using the microbits thermostat. <br>
 The benefits of this could be to know how active the pet my be with the addition of a pedometer or gyro sensor. Having an lcd on the microbit it can also show a status of the pet on its collar as well as on the website in the form of a dynamic face. <br>
 
+### Entry 3
 I purchased a pulse sensor from Ebay that will arrive within the week for use in my project. I also began testing features using the microbit controller. I used the built in temperature sensor to set the temperature variable and then checked if the temperature was within 3 different ranges, setting the pets overall temperature condition depending on which range it was within such as cold, fine, or hot. I also setup a calibratable step counter that checks for changes in the microbits accelerometer that will count steps and calculate walk distance based on the set average step distance.
 
 <br>
 
-This week we spoke about how my device can benefit the user, have its own unice aspects, and have a strong foundation. We also speculated how our projects could evolve or adapt, and conceptualised other potential options.
+### Entry 4
+This week we spoke about how my device can benefit the user, have its own unique aspects, and have a strong foundation. We also speculated how our projects could evolve or adapt, and conceptualised other potential options.
 
 How can my project have a strong conceptual foundation? <br>
 My device will be shaped around meeting the needs of pet home owners who want more information about their pet, in a fun new way. The pet health industry already has alot of research, and it will be tested on animals. <br>
@@ -58,7 +54,7 @@ Output - Informational Tells people if they will also get rain
 ### My Ideas - Individual
 Form - Custom Hardware <br>
 Configuration - Nonhuman <br>
-Input - Manual Controls <br>
+Input - Biometrics <br>
 Output - Informational <br>
 This could be an informative biometrics reader for cats and dogs, to inform the owner of the animal's health such as vitals, temperature, and fatigue. It could be made from a microbit with a heart rate monitor and reading the animals temperature, a Wi-Fi chip or bluetooth could be used to send the information to a web application. This device could be made in a small form factor to be used as a collar attachment, provided these biometrics can be read from the neck area and cause minimal discomfort.
 
@@ -108,7 +104,7 @@ The infrared monitor is a less invasive method for home users to check their pet
 ## Overview
 Wearable Technology senses biometric data of pets.
 A device for the user to keep track of their pet's health and wellbeing. Using different biometric sensors, it may collect input data such as heart rate, temperature, and number of steps or speed of movement and walk distance, and return output data of the overall health and happiness of the pet along with all information used to determine the results. <br>
-The data will be readable from a web page that will show details about each aspect of the pet and rate its overall happiness. It will also show little quirky images of each aspect that sums up the pets active levels, temperature, and happyness. May get images from API's or in built images.
+The data will be readable from a web page that will show details about each aspect of the pet and rate its overall happiness. It will also show little quirky images of each aspect that sums up the pets active levels, temperature, and happyness. May get images from API's or in-built images.
 
 <br>
 
@@ -117,6 +113,15 @@ Microbit V2 - microcontroller used to collect data and power devices. <br>
 Pulse Sensor - reads the animals heartbeat. <br>
 Accelerometer - reads number of steps taken or speed of movement. <br>
 Thermometer - reads the external temperature surrounding the pet. <br>
+
+### Concept Designs
+I have worked on some concept designs of my product to work out what devices might be used and how they would be setup to be attached to my pet. Below is a design depicting the devices that would be used as well as two different variations, a collar, and a harness set-up. <br>
+
+![Device Concept](images/DC.PNG) <br>
+
+This image is a concept design of the webpage layout, showing the different forms of information that may be provided, and a concept of the different cat images that may be shown. <br>
+
+![Webpage Concept](images/WC.PNG) 
 
 <br>
 
@@ -152,7 +157,7 @@ Also as the microbit is a V2 it has a logo button that may be pressed, so I util
 <br>
 
 ### Adding A Pulse Sensor
-On make code I setup a simple function to read the inputs from the pulse sensor. I began by creating 2 variable caller heartRate and heartRateSmoothed. I will be using the microbit pin 0 to read the values recieved from the pulse sensor so I set the heartRate variable to the pin 0 using analog read pin, which then was made visible using serial write value. To get a smoothed result I then used a calculation for smoothing the values of the heartRate variable that is shown below. This requireed a variable I called ratio that could be changed to increase or decrease the smoothing that I currently set to '.05'. heartRateSmoothed was also made visible using serial read value. <br>
+On make code I setup a simple function to read the inputs from the pulse sensor. I began by creating 2 variables called heartRate and heartRateSmoothed. I will be using the microbit pin 0 to read the values recieved from the pulse sensor so I set the heartRate variable to the pin 0 using analog read pin, which then was made visible using serial write value. To get a smoothed result I then used a calculation for smoothing the values of the heartRate variable that is shown below. This requireed a variable I called ratio that could be changed to increase or decrease the smoothing that I currently set to '.05'. heartRateSmoothed was also made visible using serial read value. <br>
 
 ![Button Shows Temp](images/MC5.PNG) <br>
 
@@ -160,9 +165,48 @@ After connecting the pule sensor device to the micro bit using its 3 volt, earth
 
 ![My Heart Rate](images/MC6.PNG) <br>
 
-Now that I have confirmed the code and sensor is working I began tests with the sensor on my cat. Right away I was having trouble reading the pets heartrate as pointed out by my tutor because the pulse sensor requires skin contact for effective results. Luckily my cat has very short hair and areas with visible skin so after testing different areas such as the neck, chest, and skin, I found an area on the neck that gave results. Unfortunately these results still are not great, and in most scenarios using this sensor on other pets with more fur the user would have trouble getting effective results. This createsa problem for my devices main use case and I will have to think about weather I should try other sensor types or even reevaluate what my device could be used for, or even change it entirely. <br>
+Now that I have confirmed the code and sensor is working I began tests with the sensor on my cat. Right away I was having trouble reading the pets heartrate as pointed out by my tutor because the pulse sensor requires skin contact for effective results. Luckily my cat has very short hair and areas with visible skin so after testing different areas such as the neck, chest, and skin, I found an area on the neck that gave results. Unfortunately these results still are not great, and in most scenarios using this sensor on other pets with more fur the user would have trouble getting effective results. This creates a problem for my devices main use case and I will have to think about weather I should try other sensor types or even reevaluate what my device could be used for, or even change it entirely. <br>
 
-![Cats Heart Rate](images/MC7.PNG)
+![Cats Heart Rate](images/MC7.PNG) <br>
+
+I have decide in the meantime to continue with the device as intended, and if I can't use the hearnt rate monitor effectively for my pet then I would leave it as conceptual as more complex devices would be required. Moving on, I decided to make code to read the beats per minute from the smoothed result. The approach I have taken for this is not perfect and may require more vigarous smoothing to be more accurate. What I have done is taken the smoothed heart rate and each time it updates the value, it would check if it is lower than the last value, determining that it has reached the peak of the heart beat and is now reducing. Then it would add to the number of heart beats and set a variable to ensure other beats aren't added until the heartrate starts to increase from its previous result. It would continue to do this and count beats, and it would check the number of beats every 5 seconds and calculate the average BPM from that value. I can later increase the windown between bpm calculations for more accurate readings.
+
+![BPM Code](images/MC8.PNG) <br>
+
+### Webpage Development
+Taking a break from microbit coding, I moved onto doing some concept designes that are detailed in the concept designs section, this would help me better understand the layout of the webpage and what infromation it would display. <br>
+To get started I began categorising each section of the webpage indo different containers so that they may be layed out in the desired format. For now I have filled in the page with placeholder information that would later be changed for the dynamic inputs from the microbit. The categorise containers and headers share classes so I can style them all the same for quicker implementation. This is the same for the placeholder image that I have used. Below you can see my current setup, the pet overview has prefilled information as a bio of my pet, I would like it to give the option for the user to fill this information that would then be stored on the device, however I think that I beyond the scope of tis task so for now the device will have this information hard coded to my pet specifically. <br>
+
+![Webpage Format](images/WP1.PNG) <br>
+
+I then implemented some basic styling to the webpage cascading style sheet. For this I consulted Chat GPT to help me implement flexboxes and dynamic scaling to make the webpage have a more responsive design. For this I used flexboxes to layout the container to show the information to the left and the image to the right, and added a flex to the text to ensure it is formated in a column. To scale the content as the browser width is decreased I used a clamp that uses vw units for dynamic sizing that also suits multiple resolutions. <br>
+When the display has been scaled below 940 pixels, the container is then oiented as a column instead of row and then center aligns the content. Here I defined the text to stay a fixed size and allowed the image to contine sacling down until the webpage is minimum width. <br>
+
+![Webpage Style](images/WP2.PNG) <br>
+
+![Webpage Resize](images/WP3.PNG) <br>
+
+Here is the oucome of the current webpage implementation, showing the 2 different layouts and the predefined information.
+
+![Webpage Layout 1](images/WP4.PNG) <br>
+
+![Webpage Layout 2](images/WP5.PNG) <br>
+
+To receive the information from the microbit I need to be able to connect it to the webpage. For this I used components from a webpage that Toby provided us in DES221 that connects and either sends or receives serial data with a connected microbit. This was really helpful giving me a basis to work from, though I needed to alter the serial component to receive the correct type of serial information I required. I used Chat GPT once more to help me with the following implementations. Thou I don't fully understand it, the serial component now receives the serial strings and dispathces a custom event to then use that information in my code. I ensured it was a modular event so I could define what serial values it would look for to define each section of my webpage. <br>
+
+![Receive Serial](images/WP6.PNG) <br>
+
+Then inside my java script it now listens for a serial value and then using that value which is split into the received label and value, it checks for that label and then updates the associated id with that information. There is also 2 functions, 1 for adding the received celcius and fahrenheit serial data and adding it together to show as a single string on the webpage, and 1 for the temperature state so that the webpage will show 1 of 3 different string depending on the received state value. <br>
+
+![Determine Serial](images/WP7.PNG) <br>
+
+![Serial Functions](images/WP8.PNG) <br>
+
+I am now testing tha the microbit is connecting with the webpage and displaying the received serial data on the webpage. Below you can see the id's in my html that are updated from the java script function. And below that you can see that it is infact receiving and displaying the information on the webpage. This was a big win as it was probably the most complex part of the project, which I could not have completed without Toby's code and the assistance of Chat GPT. Now I will just need to calculate more information on the microbit to send through such as BPM, active, and overall states so that I can display defined calculated status' from the information. and use those status' to determine the type of cat images to show. I would also like to display the heart rate omn a graph.
+
+![Update Webpage With Serial](images/WP9.PNG) <br>
+
+![Displaying Serial Information](images/WP10.PNG) <br>
 
 <br>
 
