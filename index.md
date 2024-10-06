@@ -79,8 +79,8 @@ Device also measures temperature, respiratory rate, relative activity level, and
 ### PetPace AI Smart Collar
 PetPace is an AI smart collar that continually monitors a pet's health and GPS location, sending data to a phone app for pet owners to view. The device examines all essential vitals and biometrics to collect data that then through machine learning observes your pet's health over time, collecting essential data for your vet. The app sends alerts of early warning signs for need of veterinary care and also correlates your pet's data against thousands of similar pets. Thanks to the device collecting data every 2 minutes you can keep a constant update of your pet's condition through the app to check your pet's temperature, heart and respiration rate, the condition of its activity and sleep, as well as its GPS location.
 
-![PetPace Smart Collar](images/PPC2.PNG)
-![PetPace Smart Collar App](images/PPC1.PNG)
+![PetPace Smart Collar](images/PPC2.png)
+![PetPace Smart Collar App](images/PPC1.png)
 
 <br>
 
