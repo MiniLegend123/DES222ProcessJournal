@@ -204,13 +204,110 @@ Then inside my java script it now listens for a serial value and then using that
 
 ![Serial Functions](images/WP8.png) <br>
 
-I am now testing tha the microbit is connecting with the webpage and displaying the received serial data on the webpage. Below you can see the id's in my html that are updated from the java script function. And below that you can see that it is infact receiving and displaying the information on the webpage. This was a big win as it was probably the most complex part of the project, which I could not have completed without Toby's code and the assistance of Chat GPT. Now I will just need to calculate more information on the microbit to send through such as BPM, active, and overall states so that I can display defined calculated status' from the information. and use those status' to determine the type of cat images to show. I would also like to display the heart rate omn a graph.
+I am now testing tha the microbit is connecting with the webpage and displaying the received serial data on the webpage. Below you can see the id's in my html that are updated from the java script function. And below that you can see that it is infact receiving and displaying the information on the webpage. This was a big win as it was probably the most complex part of the project, which I could not have completed without Toby's code and the assistance of Chat GPT. Now I will just need to calculate more information on the microbit to send through such as BPM, active, and overall states so that I can display defined calculated status' from the information. and use those status' to determine the type of cat images to show. I would also like to display the heart rate omn a graph. <br>
 
 ![Update Webpage With Serial](images/WP9.png) <br>
 
 ![Displaying Serial Information](images/WP10.png) <br>
 
 <br>
+
+The next feature I added to my webpage was a chart that would display the live heartrate information of the pet. <br>
+
+![Displaying Serial Information](images/WP13.png) <br>
+
+For this I first accessed a chart library by adding the following line of code into my html "script src="https://cdn.jsdelivr.net/npm/chart.js"></script". Once added I had access to ready to go charts that could be adjusted to my requirements. Below is the code used to implement the chart I needed with help from ChatGPT. This was the result of an iterative process to get it to show the desired data whilst keeping the y axis range zoomed in showing only the current readouts with minor padding. It updates new data points whilst also removing old ones and the data it shows is received from the mocrobits heart rate smoothed serial value that is sent from my java function. <br>
+
+![Initializing Chart](images/WP11.png) <br>
+
+![Defining Chart Data](images/WP12.png) <br>
+
+The chart already scales responsively, though to keep it within the desired container I needed to update the Css so it would stay the width of that container. <br>
+
+![Chart Styling](images/WP14.png) <br>
+
+### Finishing Microbit Code
+The code on the microbit needed more functions to determin the active state, as well as the BPM state that would be used to determine the pets overall health against the current temperature. I started with the active state that would determine how active the pet has been based of of how many steps the pet has taken. This was done similarly  to the temperature state by checking the step count against 3 ranges. I did not use a check to determine if it was in the current state already as this would allow it to update to the webpage as soon as a step was taken, and the webpage could be updated with that check independently to ensure randem pet images would not change every step. I chose for this state to not be calculated into the pets health as cats are fairly bi-polar in terms of activity. <br>
+
+![Active State](images/MC9.png) <br>
+
+Next I setup the BPM state. This was the same as the temperature state, checking the BPM against 3 different ranges and also only updating if the state has changed to avoid playing the notification sound multiple times. These states are then sent as serial values for the webpage to interpret and update. <br>
+
+![BPM State](images/MC10.png) <br>
+
+I then updated the pet state function to be determined by both the ambient temperature state and the BPM state. I could have avoided such a long check for state 0 by only having 2 states, however I wanted a 3rd state to show a sadde image if the BPM or temperature were high.
+It calculates state 0 by checking if temp and BPM state is currently 0, or if 1 of them is currently 0. Now thinking about it I probably could have just done the latter for the same result.
+
+![Pet State](images/MC11.png) <br>
+
+The majority of the Microbit code is now completed and will only need adjustments to values leter on during tests to ensure the stepcounter and BPM are calculating appropriately. <br>
+
+### Webpage Development Cont.
+Now that the microbit code is complete, I needed the webpage to receive and interpret the new data. For this I added new cases to my event listener, checking for the new serial values from the microbit. The values required functions similarly to the temp state to interpret which state is recieved and then update thedocument with the desired string. <br>
+
+![Updating Event Listener](images/WP15.png) <br>
+
+Below is the 3 new functions that are filtering this informatio similarly to the temp state function. Here you can also see where I have created multiple id's to display the information in multiple locations of the document. <br>
+
+![Filtering Serial Data](images/WP16.png) <br>
+
+Here is all of the current serial data being displayed onto the webpage to test it is working. <br>
+
+![Serial Data Tests](images/WP17.png) <br>
+
+Now that I have confirmed that all of the data is updating as intended, I can now ster implementing the data into the correct locations of the webpage, replacinng the placeholder information. After adding in all of the required secondary id elements in the java script as outlined above, I could then put these id's into their corresponding positions in the html. below is some of that information implemented in each section. <br> 
+
+![Serial Data Tests](images/WP18.png) <br>
+
+Now that the data is being received and displayed on the webpage, I now need to implement the random images to appear that are themed to the current state of each section. For this I searched for a cat image API that could potentially be used provided it gives me access to appropriate filter types to achieve this. In my research I found the website Cataas that has the option to get a random cat image that has a specific tag. This would give me the option to get happy, sad, and funny cat images. As well as some others for each pet health state. Below is an image of this API website and an example of the implementation I used. The only downside to this particular API is that its library only contains 1900 images, resultin in some tags only having a couple variant images. <br>
+
+![Cataas API Website](images/WP19.png) <br>
+
+I started with a random tagless cat image that could be used for the cat bio image. I also decided that as this image is not affiliated with any of the pet states, I wanted to add a button to this one that could generate a new random cat image when clicked to enhance the random cat image aspect of the webpage and feel more responsive in its design. Below is an image of the button and appropriate named image id  being added to the html, and the function that the button calls when clicked tha I will outline shortly. <br>
+
+![Random Cat Button](images/WP20.png) <br>
+
+To get the random cat image from the API I added a new function to the java script that could be called whenever the bio image is to be updated. Firstly the function is called on load to add an initial raandom image to the webpage. To do this the function accesses the api to get a random cat image, and then it adds a timestamp to the image so that the image could be replaced later with a new image if needed and avoid caching of the current image. The bio image id is then updated with the new image. This will now work if the button is pressed also. <br>
+
+![Random Cat Image Function](images/WP21.png) <br>
+
+Here is the random cat image from the API being displayed onto the webpage, and when the button is clicked it is then replaced by a new webpage. I also added some styling to the button, adjusting its colour and the flexbox of the container it and the image are within so that it is displayed below the image. There is also some other styling changes I am testing here, mainly being the overview contain background. <br>
+
+![Random Cat Image Test](images/WP22.png) <br>
+
+Next I implemented a similar method into each of the state functions, calling a different random tagged cat image of a certain type depending on the current state. To ensure the image is not replaced by a new image provided the function is called with the same state as the current, I added an additional if statement that checks the new state against the last to ensure it does not replace the image. This results in a new image being set only if the state has changed to a new image. To ensure the last state variable remembers the last state when called, I defined it as a property of the function. I applied this method to each of the other state functions. <br>
+
+![Random Cat Image State Function](images/WP23.png) <br>
+
+Here you can see the random images being selected that are of a different type depending on the current state. For example in the first image the pet state is happy, resulting in a happy image. Whilst in the second image the pet state is unhappy, resulting in a sad cat image.
+
+![Happy & Healthy Images](images/WP24.png) <br>
+
+![Unhappy & Unhealthy Images](images/WP25.png) <br>
+
+And here you can see completely different images being selected under the same curcumstances in a different instance. <br>
+
+![Happy & Healthy Images](images/WP26.png) <br>
+
+In this image you can also see the current active status as lazy, resulting in a sleeping cat image <br>
+
+![Lazy Cat Image](images/WP27.png) <br>
+
+### Hardware Prototype Tests
+With the core functionalities of the microbit and the webpage implemented and functioning, it is now time to setup a prototype and perform tests on my cat. Firstly I tested connecting the microbit to my computer using bluetooth, however I unfortunately cannot get the microbit to be detected on my PC. Though this is a problem with the core functionality of the portability and ease of checking the webpage whilst using it with a pet, for the sake of the prototype I will just have to test with an extra long cable I have when testing the webpage, as well as testing other functionalities such as the step counter whilst disconnected from the webpage. <br>
+I started my prototype by getting an existing cat harness and affixing the microbit and powerpack to it using hairties. For now I am testing it without the pulse sensor, as it will not effectively read a heart rate with the code in its current state and depending on the outcome of different smoothing approaches I won't know if I will be able to use it on a pet or alternatively test that specific function on myself to showcase it properly functioning on the webpage. Below is my current harness prototype setup for testing with my cat. <br>
+
+![Prototype Harness](images/PT1.png) <br>
+
+I then tested it on my cat to ensure it is both comfortable for the pet and functional in its current design. If you look closely in this image it is an earlier slightly different configuration of the componets than shown in the previous image. I changed this configuration to the oone shown in the previous image as the power pack was concealing the area to affix the leash, hindering the harnesses funtionality. <br>
+
+![Prototype Harness Comfort](images/PT2.png) <br>
+
+Now that I have confirmed the prototype is comfortable and functional for the pet, I am moving onto testing the functionality of the step counter.
+
+![Step Counter Tests](images/PT3.png) <br>
+
+![Step Counter Adjustments](images/MC12.png) <br>
 
 ## References
 MeasureON! Dog Heart Rate Monitor - https://vetmeasure.com/continuous-heart-rate-monitor/ <br>
