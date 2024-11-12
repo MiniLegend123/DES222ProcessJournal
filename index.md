@@ -303,11 +303,39 @@ I then tested it on my cat to ensure it is both comfortable for the pet and func
 
 ![Prototype Harness Comfort](images/PT2.png) <br>
 
-Now that I have confirmed the prototype is comfortable and functional for the pet, I am moving onto testing the functionality of the step counter.
+Now that I have confirmed the prototype is comfortable and functional for the pet, I am moving onto testing the functionality of the step counter. Initial testing showed that the current acceellerometer strength threshold was too strong, resulting in not enough steps being registered. This was due to my cats steps being very soft. <br>
 
 ![Step Counter Tests](images/PT3.png) <br>
 
-![Step Counter Adjustments](images/MC12.png) <br>
+From research in the microbits accellerometer, I found that it uses 3 axis of movement and 2 axis of roll that are also calculated in negative values, and that the accellerometer defice is not situated in the center of the device that would also result in less accurate readings for certain movements. I found that with te current setup negative value rolls were not registering with the device. <br> 
+
+![Step Counter Research](images/PT4.png) <br>
+
+I attempted a ver different approaches to the code to accommodate all directions of movement, mainly by accessing each accellerometer value independently and checking its positive and negative values against the strength threshold. Unfortunately I did not like the results I was getting with this approach and decided the original approach would register steps more easily. So I focused on refining the strength threshold until I found a good value to register each step the cat takes. That value is currently 1215 micro Gs, whic registeres each step but sometimes registers other slight movements aso resulting in excessive step counts. So I will need to refine this value further to ensure more accurate readouts. Below is the alternate approach that I tested. <br>
+
+![Step Counter Adjustments](images/MC14.png) <br>
+
+For no I am moving onto refining the pulse senor data for a smoother readout to ensure a more accurate BPM is calculated. For this I initially tried an additional approach to smooth the raw pulse sensor data before applying my current smoothing approach by calculating the average between 3 points of data received. I did not like this approach as it resulted in more sporradic readouts when smoothed further. So similarly to my initial approach I added an extra layer of smothing after the first, to give a subtle smoothing to the already smoothed data. While this would not be the best approach, it did smooth out any unneccessary peaks in the data that would trigger the BPM checker. This resulted in a more accurate BPM. 
+
+![Pulse Sensor Smoothing](images/MC13.png) <br>
+
+Through my testing I also confirmed that all other features are working, such as the bottons showing the temperature, step count, and current BPM, or resetting the step counter. The states change accordingly when thresholds are reached, showing the updated pet state on the device. <br>
+
+### Refining Webpage
+Now that the majority of testing has been done, I have started reffining the design of the webpage, and adding other responsivity to its code. <br>
+I started by adding new fonts accessed from the google font API. I added the font Teko for the header, and Teko for the body text. Another addition I added was a font icon I found online and copied into the header in its own class in case I decide to add any additional styling. This gave small cat icons to the title. <br>
+
+![Webpage Fonts](images/WP28.png) <br>
+
+Below is the result of the adjustments to the webpage including additional changes to the background colours, font weights, and padding of some elements. <br>
+
+![Webpage Design](images/WP29.png) <br>
+
+![Webpage Design](images/WP30.png) <br>
+
+To add additional responsivity to the webpages design I added some minor hover effects to the overview sections images and headers. The images boarder radius will animate in size when the mouse is hovered over it, and the header fonts will animate a gradient of colour that will fill accross the font when they are hovered over.
+
+![Webpage Design](images/WP31.png) <br>
 
 ## References
 MeasureON! Dog Heart Rate Monitor - https://vetmeasure.com/continuous-heart-rate-monitor/ <br>
